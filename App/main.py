@@ -2,10 +2,10 @@ from flask import Flask, redirect, render_template, request, session
 import db
 
 app = Flask(__name__)
-app.secret_key = 'goku'
+app.secret_key = "goku"
 
 @app.route("/")
-def Home():
+def index():
     reviewdata = db.GetReview()
     return render_template("index.html", reviews=reviewdata)
 
