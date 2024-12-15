@@ -4,4 +4,6 @@
 - A logged in user can add a review which will be displayed to everyone
 - The logout function for someone logged in will remove their authority to add reviews and they can only read the reviews
 - Adding a review will require the user to enter the date, type of entertainment (movie/game), the title, star rating out of 5 and their thoughts on the title
+- The purpose of the website is to be able to read other people's opinion on a movie/game.
+- Passwords are hashed and a XSS prevention script is also used to improve safety features of the PWA
   
