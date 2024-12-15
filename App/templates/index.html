@@ -1,44 +1,58 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- Inherits from the base.html template to use the common layout -->
 
-{% block content %}
+{% block content %}  <!-- The content block where page-specific content will be inserted -->
 
 <div class="container">
 
+    <!-- Introduction paragraph describing the purpose of the website -->
     <p>This is a website for anyone who wants to express their views on a particular game or movie, 
-        you are free to make any reviews as long as you do not use vulgular terms.
+        you are free to make any reviews as long as you do not use vulgar terms.
     </p>
 
+    <!-- Check if the user is logged in (session contains 'username') -->
     {% if session['username'] %}
     <br>
+    <!-- Greeting message with the logged-in user's name -->
     <p>Hello {{ session['username'] }}</p>
 
+    <!-- Button to navigate to the page where users can add a review -->
     <a href="/add"><button>Add Review</button></a>
     
     {% endif %}
-
 
 </div>
 
 <br>
 
+<!-- Table to display reviews -->
 <table class="review_table">
 
+    <!-- Table header containing the column names -->
     <thead>
-        <th>Username</th>
-        <th>Movie or Game</th>
-        <th>Name</th>
-        <th>Rating</th>
-        <th>Review</th>
+        <tr>
+            <th>Username</th> 
+            <th>Movie or Game</th>  
+            <th>Name</th>  
+            <th>Rating</th>  
+            <th>Review</th> 
+        </tr>
     </thead>
 
+    <!-- Table body where individual reviews will be inserted -->
     <tbody>
-        {% for game in Reviews %}
+        <!-- Loop through all the reviews and display each one -->
+        {% for review in FetchedReview %}
         <tr>
-            <td>{{ game['username'] }}</td>
-            <td>{{ game['type'] }}</td>
-            <td>{{ game['name'] }}</td>
-            <td>{{ game['rating'] }}</td>
-            <td>{{ game['review'] }}</td>
+            <!-- Display the username of the reviewer -->
+            <td>{{ review['username'] }}</td>
+            <!-- Display the type of review (movie or game) -->
+            <td>{{ review['type'] }}</td>
+            <!-- Display the name of the movie or game being reviewed -->
+            <td>{{ review['name'] }}</td>
+            <!-- Display the rating out of 5 -->
+            <td>{{ review['rating'] }}</td>
+            <!-- Display the actual review text -->
+            <td>{{ review['review'] }}</td>
         </tr>
         {% endfor %}
     </tbody>
