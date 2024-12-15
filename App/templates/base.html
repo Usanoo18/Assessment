@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8" />  <!-- Character encoding set to UTF-8 for proper text rendering -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <!-- Ensures responsive design for mobile devices -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />  <!-- Compatibility with Internet Explorer (uses the latest rendering engine) -->
 
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">  <!-- Restrict loading of external scripts (only allows self-origin scripts) -->
 
-    <title>R Reviews</title>
+    <title>R Reviews</title>  <!-- Title -->
 
+    <!-- Link to the external CSS stylesheet for the page design -->
     <link rel="stylesheet" href="static/css/style.css" />
+
+    <!-- Link to the manifest file for Progressive Web App (PWA) settings -->
     <link rel="manifest" href="static/manifest.json" />
+
+    <!-- Link to the favicon image shown in the browser tab -->
     <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
 </head>
 
@@ -18,24 +23,40 @@
 
     <h1 class="banner">R Reviews</h1>
 
+    <!-- Navigation bar with links for the homepage, login, register, or logout -->
     <nav>
-        <a href="/">Home</a>
-        {% if not session['username'] %}
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-            {% else %}
-                <a href="/logout">Logout</a>
-            {% endif %}
+        <a href="/">Home</a>  <!-- Link to the homepage -->
+        {% if not session['username'] %}  <!-- Checks if the user is not logged in -->
+            <a href="/login">Login</a>  <!-- Link to the login page -->
+            <a href="/register">Register</a>  <!-- Link to the registration page -->
+        {% else %}  <!-- If the user is logged in, show logout link -->
+            <a href="/logout">Logout</a>  <!-- Link to logout -->
+        {% endif %}
     </nav>
 
+    <!-- Main content area -->
     <main>
-        {% block content %}
+        {% block content %}  <!-- Placeholder for content to be inserted child templates -->
 
         {% endblock content %}
     </main>
 
-
+    <!-- Link to the external JavaScript file -->
     <script src="static/js/app.js"></script>
-    
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/static/service-worker.js')
+            .then(function(registration) {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('Service Worker registration failed:', error);
+            });
+        } else {
+          console.log('Service Workers are not supported in this browser.');
+        }
+      </script>
+
 </body>
 </html>
