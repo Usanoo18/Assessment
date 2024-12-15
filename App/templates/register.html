@@ -1,13 +1,22 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- Inherits from the base.html template to use the common layout -->
 
-{% block content %}
+{% block content %}  <!-- The content block where page-specific content will be inserted -->
+
+<!-- Heading for the registration page -->
 <h2>Register</h2>
+
+<!-- Form for the registration process -->
 <form action="/register" method="post">
+    <!-- Label and input field for the username -->
     <label>Username: </label>
     <input type="text" name="username" id="username">
+
+    <!-- Label and input field for the password -->
     <label>Password: </label>
     <input type="password" name="password" id="password">
+
+    <!-- Submit button to submit the form -->
     <input type="submit" value="Register">
 </form>
 
-{% endblock content %}
+{% endblock content %} 
