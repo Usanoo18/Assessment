@@ -1,21 +1,36 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- This line extends the base HTML layout to reuse common elements -->
 
-{% block content %}
-<h2>Add Review</h2>
+{% block content %}  <!-- This block contains the unique content for the "Add Review" page -->
+
+<h2>Add Review</h2>  <!-- A heading for the page -->
+
+<!-- Start of the form for adding a review. It uses POST method to send data to "/add" URL -->
 <form action="/add" method="POST">
-    <label>Date: </label>
-    <input type="date" name="date" id="date">
+    
+    <!-- Date input field for the user to select a date. 'required' ensures the field cannot be empty -->
+    <label for="date">Date: </label>
+    <input type="date" name="date" id="date" required>
+
+    <!-- Dropdown menu to choose between "movie" or "game" as the review type -->
     <label for="type">Choose type:</label>
-    <select name="type" id="type">
-        <option value="movie">Movie</option>
-        <option value="game">Game</option>
+    <select name="type" id="type" required>
+        <option value="movie">Movie</option>  
+        <option value="game">Game</option>    
     </select>
-    <label>Title: </label>
-    <input type="text" name="name" id="name">
-    <label for="rating">Rating out of 1-5</label>
-    <input type="number" id="rating" name="rating" min="1" max="5">
-    <label>Review: </label>
-    <input type="text" name="review" id="review">
+
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="rating">Rating out of 1-5: </label>
+    <input type="number" id="rating" name="rating" min="1" max="5" required>
+
+    <!-- Textarea for the user to write their review -->
+    <label for="review">Review: </label>
+    <textarea name="review" id="review" required></textarea>
+
+    <!-- Submit button to send the form data to the server -->
     <input type="submit" value="Add review">
+
 </form>
-{% endblock content %}
+
+{% endblock content %} 
